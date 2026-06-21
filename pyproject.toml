@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bugbee"
-version = "0.1.0"
+version = "0.1.1"
 description = "AI-powered CLI debugging and auto-repair tool with RAG, automatic patch generation, and validation."
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
