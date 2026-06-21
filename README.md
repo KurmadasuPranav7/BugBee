@@ -1,4 +1,4 @@
-# 🐝 BugBee
+# BugBee
 
 > **AI-powered CLI debugging assistant that automatically analyzes runtime errors, retrieves relevant documentation using RAG, and suggests or applies intelligent fixes.**
 
