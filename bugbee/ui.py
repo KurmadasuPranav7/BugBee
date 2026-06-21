@@ -117,17 +117,17 @@ class UI:
     def location_found(self, file_path: str, line_number: int) -> None:
         _log.debug(f"Extracted location: {file_path}:{line_number}")
         self.console.print(
-            f"[bugbee.info]\U0001F4CD Located error at[/] [bugbee.path]{file_path}:{line_number}[/]"
+            f"[bugbee.info]Located error at[/] [bugbee.path]{file_path}:{line_number}[/]"
         )
 
     def location_not_found(self) -> None:
         _log.debug("Could not determine source location from stderr.")
-        self.console.print("[bugbee.warning]\u26A0 Could not determine the source location.[/]")
+        self.console.print("[bugbee.warning]Could not determine the source location.[/]")
 
     def cache_hit(self) -> None:
         _log.info("Cache hit – using previously generated response.")
         self.console.print(
-            "[bugbee.info]\u26A1 Cache hit[/] [bugbee.muted]— reusing a previous analysis.[/]"
+            "[bugbee.info]Cache hit[/] [bugbee.muted]— reusing a previous analysis.[/]"
         )
 
     def cache_miss(self) -> None:
@@ -136,7 +136,7 @@ class UI:
 
     def cache_cleared(self) -> None:
         _log.info("Cache cleared.")
-        self.console.print("[bugbee.success]\u2713 Cache cleared.[/]")
+        self.console.print("[bugbee.success]Cache cleared.[/]")
 
     def retrieval_stats(self, top_score: float, avg_score: float) -> None:
         _log.debug(f"Retrieval scores — top: {top_score}, avg: {avg_score}")
@@ -146,7 +146,7 @@ class UI:
     # ------------------------------------------------------------------
     def show_analysis(self, content: str) -> None:
         self.console.print(
-            Panel(content, title="\U0001F916 AI Analysis", border_style="cyan", expand=True)
+            Panel(content, title="AI Analysis", border_style="cyan", expand=True)
         )
 
     # ------------------------------------------------------------------
