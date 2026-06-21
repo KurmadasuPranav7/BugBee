@@ -1,4 +1,4 @@
-# 🐝 BugBee
+# BugBee
 
 > **AI-powered CLI debugging assistant that automatically analyzes runtime errors, retrieves relevant documentation using RAG, and suggests or applies intelligent fixes.**
 
@@ -6,19 +6,19 @@ BugBee wraps your terminal commands, intercepts runtime failures, analyzes the t
 
 ---
 
-## ✨ Features
+## Features
 
-* 🤖 AI-powered debugging using **DeepSeek-R1**
-* 📚 Retrieval-Augmented Generation (RAG) using **ChromaDB**
-* 🔍 Automatic traceback parsing
-* 🧠 Context-aware code analysis
-* 📖 Retrieval from official framework documentation
-* ⚡ SHA256-based intelligent response caching
-* 🩹 Automatic code patch generation
-* ✅ Validation after applying fixes
-* 📊 Metrics collection
-* 💻 Cross-platform support (Windows, Linux, macOS)
-* 🚀 Packaged for PyPI
+* AI-powered debugging using **DeepSeek-R1**
+* Retrieval-Augmented Generation (RAG) using **ChromaDB**
+* Automatic traceback parsing
+* Context-aware code analysis
+* Retrieval from official framework documentation
+* SHA256-based intelligent response caching
+* Automatic code patch generation
+* Validation after applying fixes
+* Metrics collection
+* Cross-platform support (Windows, Linux, macOS)
+* Packaged for PyPI
 
 ---
 
