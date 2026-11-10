@@ -253,6 +253,389 @@ def doctor() -> None:
     if missing:
         raise typer.Exit(code=1)
 
+    def jayaho() -> None:
+        """Displays a menu of machine learning topics and prints the corresponding code."""
+        print("Select an option:")
+        print("1. LinR")
+        print("2. Log")
+        print("3. KNNc")
+        print("4. KNNr")
+        print("5. SVM")
+        print("6. DTree.")
+        print("7. RForest.")
+        print("8. Naive")
+        print("9. K-means")
+        print("10. Hierarchical.")
+        print("11. CNN")
+        print("12. RNN")
+        print("13. LSTM")
+        print("14. ObjD")
+        print("15. Face")
+
+        choice = input("Enter your choice (1-15): ").strip()
+
+        if choice == "1":
+            print('''# Linear Regression
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import mean_squared_error, r2_score
+
+    # Fixed dataset: area (sq. ft.) and price (lakhs)
+    X = np.array([500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400]).reshape(-1, 1)
+    y = np.array([15, 18, 21, 24, 27, 30, 33.9, 35.7, 39.6, 47])
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("R2 Score:", r2_score(y_test, pred))
+    print("MSE:", mean_squared_error(y_test, pred))
+
+    plt.scatter(X, y, label="Actual data")
+    plt.plot(X, model.predict(X), color="red", label="Regression line")
+    plt.xlabel("Area (sq. ft.)")
+    plt.ylabel("Price (lakhs)")
+    plt.legend()
+    plt.show()
+
+    print("Price for 1500 sq.ft.:", model.predict([[1500]])[0])''')
+        elif choice == "2":
+            print('''# Logistic Regression
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.metrics import accuracy_score, classification_report
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = LogisticRegression(max_iter=200)
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, pred))
+    print(classification_report(y_test, pred, target_names=data.target_names))
+
+    # Predict a new flower
+    sample = [[5.1, 3.5, 1.4, 0.2]]
+    print("Predicted flower:", data.target_names[model.predict(sample)[0]])''')
+        elif choice == "3":
+            print('''# KNN Classification
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.metrics import accuracy_score, classification_report
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.pipeline import make_pipeline
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = KNeighborsClassifier(n_neighbors=3)
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, pred))
+    print(classification_report(y_test, pred, target_names=data.target_names))
+
+    print("New flower:", data.target_names[
+        model.predict([[5.1, 3.5, 1.4, 0.2]])[0]
+    ])''')
+        elif choice == "4":
+            print('''# KNN Regression
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from sklearn.neighbors import KNeighborsRegressor
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import mean_squared_error, r2_score
+
+    X = np.array([500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400]).reshape(-1, 1)
+    y = np.array([15, 18, 21, 24, 27, 30, 33, 36, 39, 42])
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.5, random_state=42
+    )
+
+    model = KNeighborsRegressor(n_neighbors=3)
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("R2 Score:", r2_score(y_test, pred))
+    print("MSE:", mean_squared_error(y_test, pred))
+    print("Price for 950 sq.ft.:", model.predict([[950]])[0])''')
+        elif choice == "5":
+            print('''# SVM
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.svm import SVC
+    from sklearn.metrics import accuracy_score, classification_report
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = SVC(kernel="linear")
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, pred))
+    print(classification_report(y_test, pred, target_names=data.target_names))
+
+    print("New flower:", data.target_names[
+        model.predict([[5.2, 3.5, 1.4, 0.2]])[0]
+    ])''')
+        elif choice == "6":
+            print('''# Decision Tree
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.metrics import accuracy_score, classification_report
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = DecisionTreeClassifier(max_depth=3, random_state=42)
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, pred))
+    print(classification_report(y_test, pred, target_names=data.target_names))
+
+    print("New flower:", data.target_names[
+        model.predict([[5.1, 3.5, 1.4, 0.2]])[0]
+    ])''')
+        elif choice == "7":
+            print('''# Random Forest
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import accuracy_score, classification_report
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = RandomForestClassifier(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, pred))
+    print(classification_report(y_test, pred, target_names=data.target_names))
+
+    print("New flower:", data.target_names[
+        model.predict([[5.1, 3.5, 1.4, 0.2]])[0]
+    ])''')
+        elif choice == "8":
+            print('''# Naive Bayes
+    from sklearn.datasets import load_iris
+    from sklearn.model_selection import train_test_split
+    from sklearn.naive_bayes import GaussianNB
+    from sklearn.metrics import accuracy_score, classification_report
+
+    data = load_iris()
+    X, y = data.data, data.target
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
+    model = GaussianNB()
+    model.fit(X_train, y_train)
+
+    pred = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, pred))
+    print(classification_report(y_test, pred, target_names=data.target_names))
+
+    print("New flower:", data.target_names[
+        model.predict([[5.1, 3.5, 1.4, 0.2]])[0]
+    ])''')
+        elif choice == "9":
+            print('''# K-Means
+    import matplotlib.pyplot as plt
+    from sklearn.datasets import load_iris
+    from sklearn.cluster import KMeans
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.metrics import silhouette_score
+
+    data = load_iris()
+    X = data.data[:, :2] # First two features for easy plotting
+    X = StandardScaler().fit_transform(X)
+
+    # K-Means
+    km = KMeans(n_clusters=3, random_state=42, n_init=10)
+    labels_km = km.fit_predict(X)
+
+    print("K-Means Silhouette:", silhouette_score(X, labels_km))
+
+    plt.scatter(X[:, 0], X[:, 1], c=labels_km)
+    plt.title("K-Means Clustering")
+    plt.xlabel("Sepal length (scaled)")
+    plt.ylabel("Sepal width (scaled)")
+    plt.show()''')
+        elif choice == "10":
+            print('''# Hierarchical Clustering
+    import matplotlib.pyplot as plt
+    from sklearn.datasets import load_iris
+    from sklearn.cluster import AgglomerativeClustering
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.metrics import silhouette_score
+
+    data = load_iris()
+    X = data.data[:, :2] # First two features for easy plotting
+    X = StandardScaler().fit_transform(X)
+
+    # Hierarchical clustering
+    hc = AgglomerativeClustering(n_clusters=3, linkage="ward")
+    labels_hc = hc.fit_predict(X)
+
+    print("Hierarchical Silhouette:", silhouette_score(X, labels_hc))
+
+    plt.scatter(X[:, 0], X[:, 1], c=labels_hc)
+    plt.title("Hierarchical Clustering")
+    plt.xlabel("Sepal length (scaled)")
+    plt.ylabel("Sepal width (scaled)")
+    plt.show()''')
+        elif choice == "11":
+            print('''# CNN
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import tensorflow as tf
+    from tensorflow.keras import layers, models
+
+    # Load fixed built-in dataset
+    (X_train, y_train), (X_test, y_test) = tf.keras.datasets.mnist.load_data()
+
+    # Normalize pixels and add channel dimension
+    X_train = X_train.astype("float32") / 255.0
+    X_test = X_test.astype("float32") / 255.0
+    X_train = X_train[..., np.newaxis]
+    X_test = X_test[..., np.newaxis]
+
+    # CNN model
+    model = models.Sequential([
+        layers.Input(shape=(28, 28, 1)),
+        layers.Conv2D(16, (3, 3), activation="relu"),
+        layers.MaxPooling2D((2, 2)),
+        layers.Flatten(),
+        layers.Dense(64, activation="relu"),
+        layers.Dense(10, activation="softmax")
+    ])
+
+    model.compile(optimizer="adam",
+                loss="sparse_categorical_crossentropy",
+                metrics=["accuracy"])
+
+    model.fit(X_train, y_train, epochs=3, batch_size=64, validation_split=0.1, verbose=1)
+
+    loss, acc = model.evaluate(X_test, y_test, verbose=0)
+    print("Test accuracy:", acc)
+
+    # Give an input by choosing a test-image index
+    i = int(input("Enter test image index (0-9999): "))
+    i = max(0, min(i, len(X_test) - 1))
+    prediction = model.predict(X_test[i:i+1], verbose=0)
+    print("Predicted digit:", np.argmax(prediction))
+    print("Actual digit:", y_test[i])
+
+    plt.imshow(X_test[i].squeeze(), cmap="gray")
+    plt.title("Predicted: " + str(np.argmax(prediction)))
+    plt.axis("off")
+    plt.show()''')
+        elif choice in ["12", "13"]:
+            print('''# RNN and LSTM
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import tensorflow as tf
+    from tensorflow.keras import Sequential
+    from tensorflow.keras.layers import SimpleRNN, LSTM, Dense
+
+    # Fixed time-series data
+    data = np.array([
+        10, 12, 13, 15, 14, 16, 18, 17, 20, 21,
+        23, 22, 25, 27, 26, 29, 30, 32, 31, 34,
+        36, 35, 38, 40, 39, 42, 44, 43, 46, 48
+    ], dtype="float32")
+
+    # Create sequences of 3 values to predict the next value
+    X, y = [], []
+    for i in range(len(data) - 3):
+        X.append(data[i:i+3])
+        y.append(data[i+3])
+    X = np.array(X).reshape(-1, 3, 1)
+    y = np.array(y)
+
+    # Chronological split: first 80% train, last 20% test
+    split = int(0.8 * len(X))
+    X_train, X_test = X[:split], X[split:]
+    y_train, y_test = y[:split], y[split:]
+
+    # RNN
+    rnn = Sequential([
+        tf.keras.Input(shape=(3, 1)),
+        SimpleRNN(16, activation="tanh"),
+        Dense(1)
+    ])
+    rnn.compile(optimizer="adam", loss="mse")
+    rnn.fit(X_train, y_train, epochs=100, verbose=0)
+
+    # LSTM
+    lstm = Sequential([
+        tf.keras.Input(shape=(3, 1)),
+        LSTM(16),
+        Dense(1)
+    ])
+    lstm.compile(optimizer="adam", loss="mse")
+    lstm.fit(X_train, y_train, epochs=100, verbose=0)
+
+    # Predictions
+    rnn_pred = rnn.predict(X_test, verbose=0).flatten()
+    lstm_pred = lstm.predict(X_test, verbose=0).flatten()
+
+    print("RNN Test MSE:", np.mean((y_test - rnn_pred) ** 2))
+    print("LSTM Test MSE:", np.mean((y_test - lstm_pred) ** 2))
+
+    plt.plot(y_test, marker="o", label="Actual")
+    plt.plot(rnn_pred, marker="x", label="RNN")
+    plt.plot(lstm_pred, marker="s", label="LSTM")
+    plt.title("Time-Series Prediction")
+    plt.xlabel("Test time step")
+    plt.ylabel("Value")
+    plt.legend()
+    plt.show()
+
+    # Predict the next value from your own three values
+    sample = np.array([40, 42, 44], dtype="float32").reshape(1, 3, 1)
+    print("RNN next value:", rnn.predict(sample, verbose=0)[0][0])
+    print("LSTM next value:", lstm.predict(sample, verbose=0)[0][0])''')
+        elif choice in ["14", "15"]:
+            pass  # Code not available in pdf
+
 
 if __name__ == "__main__":
     app()
